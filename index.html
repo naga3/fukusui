@@ -326,7 +326,7 @@ function render() {
 
   // HUD
   const left = ps.filter(p => !p.sp).length;
-  const pctNow = Math.round(left / N * 100);
+  const pctNow = state === 'done' ? result.pct : Math.round(left / N * 100);
   fg.textAlign = 'left'; fg.fillStyle = '#fff';
   fg.font = 'bold 22px sans-serif';
   fg.fillText('時間 ' + time.toFixed(2), 20, 36);
@@ -366,7 +366,7 @@ function render() {
       txt('右半分: 触った所から上下に滑らせるとお盆が傾く', SW / 2, cy + 132, 16);
     }
   } else if (state === 'done') {
-    fg.fillStyle = 'rgba(0,0,0,.65)'; fg.fillRect(0, cy - 130, SW, 260);
+    fg.fillStyle = 'rgba(0,0,0,.65)'; fg.fillRect(0, cy - 110, SW, 240);
     fg.fillStyle = '#fff'; txt(result.score.toFixed(2) + ' 秒', SW / 2, cy - 50, 54, 'bold');
     txt('走破 ' + result.time.toFixed(2) + ' + こぼし ' + (100 - result.pct) + '% × ' + PENALTY + ' = ' + ((100 - result.pct) * PENALTY).toFixed(1), SW / 2, cy - 8, 20);
     fg.fillStyle = result.isBest ? '#ffd24d' : '#ccc';
